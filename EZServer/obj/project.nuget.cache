@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "RLeAYRxSnXrDQdrWnoLWZErZneYr7U5NpIVl+CWyObOkGHT4sbVGgBy4uhzYhMqz5YEE6W6Fx5DJvdz1bIRZ9Q==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\EZServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\evald\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
+  "logs": []
+}

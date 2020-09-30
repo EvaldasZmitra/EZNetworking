@@ -1,0 +1,13 @@
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.exe
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.deps.json
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.runtimeconfig.json
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.runtimeconfig.dev.json
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.dll
+D:\New folder\EZServer\EZServer\bin\Debug\netcoreapp3.1\EZServer.pdb
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.csprojAssemblyReference.cache
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.AssemblyInfoInputs.cache
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.AssemblyInfo.cs
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.dll
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.pdb
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.genruntimeconfig.cache
+D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.csproj.CoreCompileInputs.cache
