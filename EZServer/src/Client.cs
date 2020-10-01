@@ -44,6 +44,7 @@ namespace EZServer
             if(headerDeserialized.SequenceNumber > _lastReceivedSequenceNumber)
             {
                 _onReceiveMessage.Invoke(body, headerDeserialized.MessageType);
+                _lastReceivedSequenceNumber = headerDeserialized.SequenceNumber;
             }
             _client.BeginReceive(OnReceive, null);
         }
