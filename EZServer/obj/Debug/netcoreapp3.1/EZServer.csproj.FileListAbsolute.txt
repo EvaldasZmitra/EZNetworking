@@ -11,3 +11,16 @@ D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.dll
 D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.pdb
 D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.genruntimeconfig.cache
 D:\New folder\EZServer\EZServer\obj\Debug\netcoreapp3.1\EZServer.csproj.CoreCompileInputs.cache
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.exe
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.deps.json
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.runtimeconfig.json
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.runtimeconfig.dev.json
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.dll
+C:\Users\evald\Desktop\EZNetworking\EZServer\bin\Debug\netcoreapp3.1\EZServer.pdb
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.csprojAssemblyReference.cache
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.csproj.CoreCompileInputs.cache
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.AssemblyInfoInputs.cache
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.AssemblyInfo.cs
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.dll
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.pdb
+C:\Users\evald\Desktop\EZNetworking\EZServer\obj\Debug\netcoreapp3.1\EZServer.genruntimeconfig.cache

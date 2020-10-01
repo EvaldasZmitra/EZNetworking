@@ -1,21 +1,18 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\EZServer.csproj": {}
+    "C:\\Users\\evald\\Desktop\\EZNetworking\\EZServer\\EZServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\EZServer.csproj": {
+    "C:\\Users\\evald\\Desktop\\EZNetworking\\EZServer\\EZServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\EZServer.csproj",
+        "projectUniqueName": "C:\\Users\\evald\\Desktop\\EZNetworking\\EZServer\\EZServer.csproj",
         "projectName": "EZServer",
-        "projectPath": "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\EZServer.csproj",
+        "projectPath": "C:\\Users\\evald\\Desktop\\EZNetworking\\EZServer\\EZServer.csproj",
         "packagesPath": "C:\\Users\\evald\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\evald\\Desktop\\New folder\\EZServer\\EZServer\\obj\\",
+        "outputPath": "C:\\Users\\evald\\Desktop\\EZNetworking\\EZServer\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
           "C:\\Users\\evald\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -29,7 +26,6 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -41,7 +37,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "imports": [
             "net461",
             "net462",
@@ -52,18 +47,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[3.1.2, 3.1.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100-rc.1.20452.10\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

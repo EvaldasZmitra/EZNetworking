@@ -1,6 +1,5 @@
 ﻿using EZServer.src;
 using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,7 +38,6 @@ namespace EZServer
             if ((MessageType)messageType == MessageType.ClientMove)
             {
                 var pos = Serializer.Deserialize<PositionMessage>(message);
-                //Console.WriteLine($"Received message from server, {pos.Name} pos is {pos.X}, {pos.Y}");
             }
         }
 
