@@ -47,6 +47,8 @@
         }
     }
     ```
+
+ # How to use server
 - How to start a server?
     ```
     Server.Instance.Start(55600, ServerTick);
@@ -76,14 +78,4 @@
 - How to send a message to all clients?
     ```
     Server.Instance.Send(pos, msg.Type);
-    ```
-
-- How to get sequence number of a message in the client?
-    ```
-    Client.Instance._sequenceNumber
-    ```
-
-- How to serialize a message?
-    ```
-    Serializer.Deserialize<PositionMessage>(msg.Data);
     ```
