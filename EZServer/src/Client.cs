@@ -9,12 +9,9 @@ namespace EZNetworking
         public static Client Instance { get; } = new Client();
 
         private UdpClient _client;
-        private Action<byte[], byte> _onReceiveMessage;
+        private Action<Message> _onReceiveMessage;
 
-        private int _sequenceNumber = 0;
-        private int _lastReceivedSequenceNumber = 0;
-
-        public void Start(string address, int port, Action<byte[], byte> onReceive)
+        public void Start(string address, int port, Action<Message> onReceive)
         {
             _client = new UdpClient();
             _client.Connect(address, port);
@@ -27,37 +24,19 @@ namespace EZNetworking
         {
             var sender = new IPEndPoint(IPAddress.Any, 0);
             var data = _client.EndReceive(s, ref sender);
-
-            var header = new byte[MessageHeader.NumBytes];
-            Array.Copy(data, header, header.Length);
-            var headerDeserialized = Serializer.Deserialize<MessageHeader>(header);
-
-            var body = new byte[data.Length - header.Length];
-            Array.Copy(data, header.Length, body, 0, body.Length);
-
-            if(headerDeserialized.SequenceNumber > _lastReceivedSequenceNumber)
-            {
-                _onReceiveMessage.Invoke(body, headerDeserialized.MessageType);
-                _lastReceivedSequenceNumber = headerDeserialized.SequenceNumber;
-            }
+            _onReceiveMessage.Invoke(Serializer.Deserialize<Message>(data));
             _client.BeginReceive(OnReceive, null);
         }
 
-        public void Send(object message, byte messageType)
+        public void Send(object message)
         {
-            _sequenceNumber++;
-            var data = Serializer.Serialize(new MessageHeader()
-            {
-                SequenceNumber = _sequenceNumber,
-                MessageType = messageType
-            });
-            data.AddRange(Serializer.Serialize(message));
+            var data = Serializer.Serialize(message);
             _client.Send(data.ToArray(), data.Count);
         }
 
         private void SendConnectionMessage()
         {
-            Send(new ConnectionMessage(), byte.MaxValue);
+            Send(new ConnectionMessage());
         }
 
         public void Dispose()

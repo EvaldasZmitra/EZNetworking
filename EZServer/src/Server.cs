@@ -48,16 +48,16 @@ namespace EZNetworking
             });
         }
 
-        public bool Send(object message, byte messageType)
+        public bool Send(object message)
         {
             if(SendQueue.Count >= MaxMessagesInQueue)
             {
                 return false;
             }
             var msg = Serializer.Serialize(message).ToArray();
+            
             SendQueue.Enqueue(new Message() { 
                 Data = msg,
-                Type = messageType,
                 SequenceNumber = _tick
             });
             return true;
@@ -67,19 +67,14 @@ namespace EZNetworking
         {
             for(int i=0;i<SendQueue.Count;i++)
             {
-                if(SendQueue.First().SequenceNumber == _tick)
+                if(SendQueue.First().SequenceNumber <= _tick)
                 {
                     SendQueue.TryDequeue(out Message msg);
-                    var data = msg.Data.ToList();
-                    var header = new MessageHeader { MessageType = msg.Type, SequenceNumber = _tick };
-                    var headerSerialized = Serializer.Serialize(header).ToArray();
-                    data.InsertRange(0, headerSerialized);
                     foreach (var client in ConnectedClients)
                     {
-                        _client.Send(data.ToArray(), data.Count, client.Key);
+                        _client.Send(msg.Data, msg.Data.Count(), client.Key);
                     }
                 }
-
             }
         }
 
@@ -93,26 +88,19 @@ namespace EZNetworking
             var sender = new IPEndPoint(IPAddress.Any, 0);
             var data = _client.EndReceive(s, ref sender);
 
-            var header = new byte [MessageHeader.NumBytes];
-            Array.Copy(data, 0, header, 0, header.Length);
-            var headerDeserialized = Serializer.Deserialize<MessageHeader>(header);
-
-            var body = new byte[data.Length - header.Length];
-            Array.Copy(data, header.Length, body, 0, body.Length);
-
             if(!ConnectedClients.ContainsKey(sender))
             {
                 OnConnected(sender);
             }
-            if(ConnectedClients[sender] < headerDeserialized.SequenceNumber)
+            var msg = Serializer.Deserialize<Message>(data);
+
+            if(ConnectedClients[sender] < msg.SequenceNumber)
             {
-                ConnectedClients[sender] = headerDeserialized.SequenceNumber;
+                ConnectedClients[sender] = msg.SequenceNumber;
                 ReceiveQueue.Enqueue(new Message
                 {
-                    Data = body,
-                    SequenceNumber = headerDeserialized.SequenceNumber,
-                    Type = headerDeserialized.MessageType,
-                    Sender = sender.ToString()
+                    Data = data,
+                    SequenceNumber = msg.SequenceNumber
                 });
             }
 
