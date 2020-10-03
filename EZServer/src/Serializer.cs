@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace EZServer
+namespace EZNetworking
 {
     [AttributeUsage(AttributeTargets.Property)]
     public class PacketSerializable: Attribute
@@ -11,9 +11,9 @@ namespace EZServer
 
     }
 
-    public class Serializer
+    public static class Serializer
     {
-        public static List<byte> Serialize(object o)
+        internal static List<byte> Serialize(object o)
         {
             var bytes = new List<byte>();
             var properties = o.GetType().GetProperties().Where(x => x.GetCustomAttributes(typeof(PacketSerializable), true).Any()).ToList();

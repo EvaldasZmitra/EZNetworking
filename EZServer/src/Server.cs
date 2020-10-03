@@ -1,5 +1,4 @@
-﻿using EZServer.src;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -9,33 +8,23 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace EZServer
+namespace EZNetworking
 {
-    public class ClientOnServer
-    {
-        public int LastReceivedMessage { get; set; }
-    }
-
-    public class Server
+    public sealed class Server : IDisposable
     {
         public static Server Instance { get; } = new Server();
 
-        public ushort MaxClients = 50;
-        public ushort TickRate = 128;
-        public ushort MaxMessagesInQueue = 1000;
+        public ushort MaxClients { get; set; } = 50;
+        public ushort TickRate { get; set; } = 128;
+        public ushort MaxMessagesInQueue { get; set; } = 1000;
 
         public ConcurrentQueue<Message> ReceiveQueue { get; } = new ConcurrentQueue<Message>();
         public ConcurrentQueue<Message> SendQueue { get; } = new ConcurrentQueue<Message>();
-        public Dictionary<IPEndPoint, ClientOnServer> ConnectedClients { get; } = new Dictionary<IPEndPoint, ClientOnServer>();
+        public Dictionary<IPEndPoint, int> ConnectedClients { get; } = new Dictionary<IPEndPoint, int>();
 
         private UdpClient _client;
         private int _tick = 0;
-        private Stopwatch _stopWatch = new Stopwatch();
-
-        private Server()
-        {
-            
-        }
+        private readonly Stopwatch _stopWatch = new Stopwatch();
 
         public void Start(int port, Action<long> ServerTick)
         {
@@ -45,7 +34,6 @@ namespace EZServer
 
             Task.Run(() =>
             {
-                var numTicks = Stopwatch.Frequency / TickRate;
                 _stopWatch.Restart();
                 while (true)
                 {
@@ -54,15 +42,7 @@ namespace EZServer
                     _tick++;
 
                     var timeToSleep = timeToWait - _stopWatch.Elapsed;
-                    if(timeToSleep.TotalMilliseconds > 0)
-                    {
-                        Console.WriteLine($"Can sleep another {timeToSleep.TotalMilliseconds}ms.");
-                        Thread.Sleep(timeToSleep);
-                    }
-                    else
-                    {
-                        Console.WriteLine($"Too soon! {ReceiveQueue.Count} {SendQueue.Count}");
-                    }
+                    Thread.Sleep(Math.Max((int)timeToSleep.TotalMilliseconds, 0));
                     _stopWatch.Restart();
                 }
             });
@@ -124,9 +104,9 @@ namespace EZServer
             {
                 OnConnected(sender);
             }
-            if(ConnectedClients[sender].LastReceivedMessage < headerDeserialized.SequenceNumber)
+            if(ConnectedClients[sender] < headerDeserialized.SequenceNumber)
             {
-                ConnectedClients[sender].LastReceivedMessage = headerDeserialized.SequenceNumber;
+                ConnectedClients[sender] = headerDeserialized.SequenceNumber;
                 ReceiveQueue.Enqueue(new Message
                 {
                     Data = body,
@@ -143,8 +123,13 @@ namespace EZServer
         {
             if(ConnectedClients.Count < MaxClients)
             {
-                ConnectedClients.Add(client, new ClientOnServer());
+                ConnectedClients.Add(client, 0);
             }
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EZServer.src
+﻿namespace EZNetworking
 {
     public class Message
     {
@@ -8,7 +8,7 @@
         public string Sender { get; set; }
     }
 
-    public class ConnectionMessage 
+    internal class ConnectionMessage 
     {
         [PacketSerializable]
         public string HelloWorld { get; set; }

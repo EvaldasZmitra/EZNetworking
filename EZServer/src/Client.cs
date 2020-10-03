@@ -1,23 +1,18 @@
-﻿using EZServer.src;
-using System;
-using System.Linq;
+﻿using System;
 using System.Net;
 using System.Net.Sockets;
 
-namespace EZServer
+namespace EZNetworking
 {
-    public class Client
+    public sealed class Client: IDisposable
     {
         public static Client Instance { get; } = new Client();
+
         private UdpClient _client;
         private Action<byte[], byte> _onReceiveMessage;
+
         private int _sequenceNumber = 0;
         private int _lastReceivedSequenceNumber = 0;
-
-        private Client()
-        {
-
-        }
 
         public void Start(string address, int port, Action<byte[], byte> onReceive)
         {
@@ -63,6 +58,11 @@ namespace EZServer
         private void SendConnectionMessage()
         {
             Send(new ConnectionMessage(), byte.MaxValue);
+        }
+
+        public void Dispose()
+        {
+            _client.Dispose();
         }
     }
 }
