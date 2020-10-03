@@ -11,7 +11,7 @@ namespace EZServer
         public static Client Instance { get; } = new Client();
         private UdpClient _client;
         private Action<byte[], byte> _onReceiveMessage;
-        public int _sequenceNumber = 0;
+        private int _sequenceNumber = 0;
         private int _lastReceivedSequenceNumber = 0;
 
         private Client()
