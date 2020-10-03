@@ -8,11 +8,9 @@ namespace EZServer
 {
     public class Client
     {
-        public delegate void OnReceiveClientType(byte[] message, short messageType);
-
         public static Client Instance { get; } = new Client();
         private UdpClient _client;
-        private OnReceiveClientType _onReceiveMessage;
+        private Action<byte[], byte> _onReceiveMessage;
         public int _sequenceNumber = 0;
         private int _lastReceivedSequenceNumber = 0;
 
@@ -21,7 +19,7 @@ namespace EZServer
 
         }
 
-        public void Start(string address, int port, OnReceiveClientType onReceive)
+        public void Start(string address, int port, Action<byte[], byte> onReceive)
         {
             _client = new UdpClient();
             _client.Connect(address, port);
