@@ -27,6 +27,7 @@ namespace EZServer
             _client.Connect(address, port);
             _onReceiveMessage = onReceive;
             _client.BeginReceive(OnReceive, null);
+            SendConnectionMessage();
         }
 
         private void OnReceive(IAsyncResult s)
@@ -59,6 +60,11 @@ namespace EZServer
             });
             data.AddRange(Serializer.Serialize(message));
             _client.Send(data.ToArray(), data.Count);
+        }
+
+        private void SendConnectionMessage()
+        {
+            Send(new ConnectionMessage(), byte.MaxValue);
         }
     }
 }

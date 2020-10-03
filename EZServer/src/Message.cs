@@ -7,4 +7,10 @@
         public int SequenceNumber { get; set; }
         public string Sender { get; set; }
     }
+
+    public class ConnectionMessage 
+    {
+        [PacketSerializable]
+        public string HelloWorld { get; set; }
+    }
 }
